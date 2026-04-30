@@ -132,8 +132,18 @@ selection.addEventListener('click', (event) => {
 
     };
 
+    const scoreToWin = 5;
+
     const scoreElement = document.querySelector('.score');
     scoreElement.textContent = `Score: ${playerScore}-${machineScore}`;
 
-    
+    if (playerScore === scoreToWin) {
+        event.target.style.display = "none";
+        alert('You won!');
+    };
+
+    if (machineScore === scoreToWin) {
+        event.target.parentNode.style.display = "none";
+        alert('You lost!');
+    };
 });
