@@ -89,3 +89,24 @@ function playGame(pointsToWin) {
 
 playGame(5);
 */
+
+const selection = document.querySelector('.selection')
+
+selection.addEventListener('click', (event) => {
+
+    let userElection; 
+    
+    const textContent = event.target.textContent;
+
+    switch (textContent.toLowerCase()) {
+        case 'rock':
+            userElection = 'rock';
+            break;
+        case 'paper':
+            userElection = 'paper';
+            break;
+        case 'scissors':
+            userElection = 'scissors';
+            break;
+    };
+});
