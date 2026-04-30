@@ -55,14 +55,14 @@ function playerWins(player, machine) {
 function playRound(playerPick, machinePick) {
     if(playerWins(playerPick, machinePick) === 1) {
         playerScore++;
-        alert(`Machine pick: ${machinePick}. You win, ${playerScore}-${machineScore}`);
+        return 'win'
 
     } else  if(playerWins(playerPick, machinePick) === -1) {
         machineScore++;
-        alert(`Machine pick: ${machinePick}. You lose, ${playerScore}-${machineScore}`);
+        return 'lose'
 
     } else {
-        alert(`Machine pick: ${machinePick}. It's a tie, ${playerScore}-${machineScore}`);
+        return 'tie'
     }
 }
 
@@ -94,7 +94,7 @@ const selection = document.querySelector('.selection')
 
 selection.addEventListener('click', (event) => {
 
-    let userElection; 
+    let userElection;
     
     const textContent = event.target.textContent;
 
@@ -108,5 +108,32 @@ selection.addEventListener('click', (event) => {
         case 'scissors':
             userElection = 'scissors';
             break;
+        default:
+            return;
     };
+
+    const resultElement = document.querySelector('.result');
+    const machinePick = randomPick()
+    const result = playRound(userElection, machinePick);
+
+    console.log(result)
+    switch (result) {
+        case 'win':
+            resultElement.textContent = `You won this round!!! Machine pick was ${machinePick}`;
+            break;
+
+        case 'lose':
+            resultElement.textContent = `You lost this round. Machine pick was ${machinePick}`;
+            break;
+
+        case 'tie':
+            resultElement.textContent = `It's a tie. Machine pick was ${machinePick}`;
+            break;
+
+    };
+
+    const scoreElement = document.querySelector('.score');
+    scoreElement.textContent = `Score: ${playerScore}-${machineScore}`;
+
+    
 });
