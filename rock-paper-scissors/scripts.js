@@ -69,6 +69,8 @@ function playRound(playerPick, machinePick) {
 let playerScore = 0
 let machineScore = 0
 
+
+/*
 const pointsToWin = 5
 
 function playGame(pointsToWin) {
@@ -84,4 +86,6 @@ function playGame(pointsToWin) {
     }
 }
 
+
 playGame(5);
+*/
