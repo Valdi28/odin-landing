@@ -64,6 +64,19 @@ function getGridSizeInput() {
     return [x, y];
 };
 
+function getGridSize(grid) {
+    if (!grid) {return undefined};
+
+    const row = grid.querySelector(".row");
+    if (!row) {return undefined};
+
+    const x = row.childElementCount;
+    const y = grid.childElementCount;
+
+    return [x, y]
+};
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
 
@@ -93,3 +106,14 @@ generateBtn.addEventListener('click', () => {
     regenerateGrid(x, y);
 });
 
+const resetBtn = document.querySelector(".resetBtn");
+
+resetBtn.addEventListener('click', () => {
+    const grid = document.querySelector('.grid');
+    const gridSize = getGridSize(grid);
+    const x = gridSize[0];
+    const y = gridSize[1];
+
+
+    regenerateGrid(x, y);
+})
