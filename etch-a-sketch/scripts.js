@@ -24,16 +24,50 @@ function generateGrid(x, y) {
     return grid;
 };
 
+function regenerateGrid(x, y) {
+    const thereIsAGrid = checkIfThereIsAGrid();
+    const container = document.querySelector('.container')
+
+    if (thereIsAGrid) {
+        const grid = document.querySelector(".grid");
+        grid.remove();
+    }
+
+    container.appendChild(generateGrid(x, y));
+}
+
 function paintCell(cell, color) {
     cell.style.backgroundColor = color;
+};
+
+function checkIfThereIsAGrid() {
+    const grid = document.querySelector(".grid");
+
+    if (grid) {
+        return true;
+    } else {
+        return false;
+    };
+};
+
+function getGridSizeInput() {
+    const xValue = document.querySelector(".xValue");
+    const yValue = document.querySelector(".yValue");
+
+    const x = Number(xValue.value);
+    const y = Number(yValue.value);
+
+    if (!x || !y) {
+        return undefined
+    };
+
+    return [x, y];
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
 
     container.append(generateGrid(10, 10));
-
-
 
     container.addEventListener('mouseover', (event) => {
 
@@ -47,4 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+const generateBtn = document.querySelector('.generateBtn');
+generateBtn.addEventListener('click', () => {
+    const gridSize = getGridSizeInput();
+    const x = gridSize[0];
+    const y = gridSize[1];
+
+    if (!gridSize) {return};
+    
+    regenerateGrid(x, y);
+});
 
