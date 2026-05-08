@@ -24,6 +24,27 @@ function generateGrid(x, y) {
     return grid;
 };
 
-const container = document.querySelector('.container')
+function paintCell(cell, color) {
+    cell.style.backgroundColor = color;
+};
 
-document.addEventListener('DOMContentLoaded', () => container.append(generateGrid(100, 100)))
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.container');
+
+    container.append(generateGrid(10, 10));
+
+
+
+    container.addEventListener('mouseover', (event) => {
+
+        const target = event.target;
+
+        if (target.classList.contains("cell")) {
+            paintCell(target, "#000");
+        };
+        
+    
+    });
+});
+
+
