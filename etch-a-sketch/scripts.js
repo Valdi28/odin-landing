@@ -48,6 +48,15 @@ function paintCell(cell, color="random") {
     cell.style.backgroundColor = color;
 };
 
+function decreaseOpacity(element, amount=0.1) {
+    let style = element.style
+    if(style.opacity  === "") {
+        style.opacity  = 1;
+    }
+
+    style.opacity  -= amount;
+}
+
 function checkIfThereIsAGrid() {
     const grid = document.querySelector(".grid");
 
@@ -96,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target.classList.contains("cell")) {
             paintCell(target, "random");
+            decreaseOpacity(target);
         };
         
     
