@@ -36,7 +36,15 @@ function regenerateGrid(x, y) {
     container.appendChild(generateGrid(x, y));
 }
 
-function paintCell(cell, color) {
+function paintCell(cell, color="random") {
+    if (color === "random") {
+        const r = Math.random() * 255
+        const g = Math.random() * 255
+        const b = Math.random() * 255
+
+        color = `rgb(${r}, ${g}, ${b})`
+    }
+
     cell.style.backgroundColor = color;
 };
 
@@ -87,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = event.target;
 
         if (target.classList.contains("cell")) {
-            paintCell(target, "#000");
+            paintCell(target, "random");
         };
         
     
